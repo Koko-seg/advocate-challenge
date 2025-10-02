@@ -12,7 +12,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "paths": {
+      "@models/*": ["models/*"],
+      "@resolvers/*": ["graphql/resolvers/*"],
       "@/*": ["./*"]
     }
   },
