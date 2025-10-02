@@ -1,7 +1,7 @@
 import { addTask } from "@resolvers/mutations/addTask";
 import TaskModel from "@models/Task";
 
-jest.mock("@models/Task"); // TaskModel-ийг бүр mock хийнэ
+jest.mock("@models/Task");
 
 describe("addTask mutation", () => {
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe("addTask mutation", () => {
       userId: "user123",
     });
 
-    expect(result.taskName).toBe("Test Task2"); // mock-тай тааруулсан
+    expect(result.taskName).toBe("Test Task2");
     expect(mockSave).toHaveBeenCalled();
   });
 
@@ -51,14 +51,12 @@ describe("addTask mutation", () => {
   });
 
   it("should throw error if description is less than 10 characters", async () => {
-    // findOne mock → null
     (TaskModel as any).findOne = jest.fn().mockResolvedValue(null);
 
-    // description < 10 тул алдаа throw хийнэ
     await expect(
       addTask(null, {
         taskName: "UniqueTask",
-        description: "Too short", // 10-с бага
+        description: "Too short",
         priority: 3,
         userId: "user123",
       })
@@ -108,7 +106,7 @@ describe("addTask mutation", () => {
         taskName: "Task3",
         description: "Valid description here",
         priority: 3,
-        tags: ["a", "b", "c", "d", "e", "f"], // 6 tags
+        tags: ["a", "b", "c", "d", "e", "f"],
         userId: "user123",
       })
     ).rejects.toThrow("Maximum 5 tags allowed");

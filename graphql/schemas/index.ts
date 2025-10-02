@@ -44,5 +44,7 @@ export const typeDefs = gql`
       priority: Int
       tags: [String!]
     ): Task!
+
+    deleteTask(taskId: ID!, userId: String!): Task! # <-- энд colon, exclamation mark, comma бүгд зөв байх ёстой
   }
 `;
